@@ -26,7 +26,7 @@ resource "aws_s3_bucket_public_access_block" "private-to-public" {
 resource "aws_s3_bucket_website_configuration" "static-website-bucket" {
   bucket = aws_s3_bucket.logesh-portfolio.id
   index_document {
-    suffix = "portfolio.html"
+    suffix = "index.html"
   }
 }
 
@@ -34,8 +34,8 @@ resource "aws_s3_bucket_website_configuration" "static-website-bucket" {
 
 resource "aws_s3_object" "upload-html-file" {
   bucket = aws_s3_bucket.logesh-portfolio.id
-  key = "portfolio.html"
-  source = "module/s3/portfolio.html"
+  key = "index.html"
+  source = "module/s3/index.html"
   content_type = "text/html"
 }
 
