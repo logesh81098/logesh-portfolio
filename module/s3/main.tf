@@ -38,3 +38,24 @@ resource "aws_s3_object" "upload-html-file" {
   source = "module/s3/portfolio.html"
   content_type = "text/html"
 }
+
+#Updating S3 bucket policy to access it 
+
+resource "aws_s3_bucket_policy" "bucket-policy" {
+  bucket = aws_s3_bucket.logesh-portfolio.id
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Principal": "*",
+            "Resource": "arn:aws:s3:::logesh-shanmugavel-portfolio/*"
+        }
+    ]
+}  
+EOF
+}
