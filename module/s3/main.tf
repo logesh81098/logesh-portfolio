@@ -20,3 +20,12 @@ resource "aws_s3_bucket_public_access_block" "private-to-public" {
   ignore_public_acls = false
   restrict_public_buckets = false
 }
+
+#Upgrading bucket to Static Website Bucket 
+
+resource "aws_s3_bucket_website_configuration" "static-website-bucket" {
+  bucket = aws_s3_bucket.logesh-portfolio.id
+  index_document {
+    suffix = "portfolio.html"
+  }
+}
