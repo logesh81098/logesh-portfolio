@@ -29,3 +29,12 @@ resource "aws_s3_bucket_website_configuration" "static-website-bucket" {
     suffix = "portfolio.html"
   }
 }
+
+#Uploading HTML file to S3 bucket 
+
+resource "aws_s3_object" "upload-html-file" {
+  bucket = aws_s3_bucket.logesh-portfolio.id
+  key = "portfolio.html"
+  source = "module/s3/portfolio.html"
+  content_type = "text/html"
+}
